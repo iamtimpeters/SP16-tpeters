@@ -38,7 +38,7 @@ var blogArticles = [{
 }];
 
 for (i = 0; i < blogArticles.length; i++){
-	var divBlogContainer = document.getElementById("blog-container");
+    var divBlogContainer = document.getElementById("blog-container");
     var divArticleWrapper = document.createElement("div");
     var divContentWrapper = document.createElement("div");
     var h1ArticleHeader = document.createElement("h1");
@@ -47,35 +47,35 @@ for (i = 0; i < blogArticles.length; i++){
     
 
     divBlogContainer.appendChild(divArticleWrapper);
-   	divArticleWrapper.className = "article-wrapper";
+    divArticleWrapper.className = "article-wrapper";
 
-   	divArticleWrapper.appendChild(h1ArticleHeader);
-	h1ArticleHeader.innerHTML = blogArticles[i].title;
+    divArticleWrapper.appendChild(h1ArticleHeader);
+    h1ArticleHeader.innerHTML = blogArticles[i].title;
 
-	divArticleWrapper.appendChild(h2ArticleAuthor);
-	h2ArticleAuthor.innerHTML = blogArticles[i].author;
+    divArticleWrapper.appendChild(h2ArticleAuthor);
+    h2ArticleAuthor.innerHTML = blogArticles[i].author;
 
-   	divArticleWrapper.appendChild(h3ArticleDate);
-   	h3ArticleDate.innerHTML = blogArticles[i].publishedOn;
+    divArticleWrapper.appendChild(h3ArticleDate);
+    h3ArticleDate.innerHTML = blogArticles[i].publishedOn;
 
-   	divArticleWrapper.appendChild(divContentWrapper);
-   	divContentWrapper.className = "content-wrapper";
+    divArticleWrapper.appendChild(divContentWrapper);
+    divContentWrapper.className = "content-wrapper";
 
-   	var contentArray = blogArticles[i].content;
+    var contentArray = blogArticles[i].content;
 
-   	for (j = 0; j < contentArray.length; j++){
+    for (j = 0; j < contentArray.length; j++){
 
-   		var h3ContentHeading = document.createElement("h3");
+   	var h3ContentHeading = document.createElement("h3");
     	var pContent = document.createElement("p");
 
-    		if (contentArray[j].heading != ""){
-   				divContentWrapper.appendChild(h3ContentHeading);
-   				h3ContentHeading.innerHTML = contentArray[j].heading;
-   			};
+    	if (contentArray[j].heading != ""){
+   		divContentWrapper.appendChild(h3ContentHeading);
+   		h3ContentHeading.innerHTML = contentArray[j].heading;
+   		};
 
-   		divContentWrapper.appendChild(pContent);
-   		pContent.innerHTML = contentArray[j].paragraph;
+   	divContentWrapper.appendChild(pContent);
+   	pContent.innerHTML = contentArray[j].paragraph;
 
-   	};
+        };
 
 };
