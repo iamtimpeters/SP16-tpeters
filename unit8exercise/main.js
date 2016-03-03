@@ -41,9 +41,9 @@ for (i = 0; i < blogArticles.length; i++){
 	var $wrapper = $("<div></div>");
 	$wrapper.addClass("article-wrapper");
 	$container.append($wrapper);
-	$wrapper.append("<h1>"+blogArticles[i].title+"</h1>");
-	$wrapper.append("<h2>"+blogArticles[i].author+"</h2>");
-	$wrapper.append("<h2>"+blogArticles[i].publishedOn+"</h2>");
+	$wrapper.append("<h1>" + blogArticles[i].title + "</h1>");
+	$wrapper.append("<h2>" + blogArticles[i].author + "</h2>");
+	$wrapper.append("<h2>" + blogArticles[i].publishedOn + "</h2>");
 	var $contentWrapper = $("<div></div>");
 	$contentWrapper.addClass("content-wrapper");
 	$wrapper.append($contentWrapper);
@@ -51,25 +51,26 @@ for (i = 0; i < blogArticles.length; i++){
 	var contentArray = blogArticles[i].content;
 
 	for (j = 0; j < contentArray.length; j++){
+
 		if (contentArray[j].heading != ""){
 			$contentWrapper.append("<h3>"+contentArray[j].heading+"</h3>")
 		};
-		
-		var graphText = contentArray[j];
 
 		var $p = $("<p></p>");
 
-		$p.text(graphText.paragraph);
+		$p.text(contentArray[j].paragraph);
 
 		$contentWrapper.append($p);
-
-
+	
 	};
+
+	//rigging a click event
+	$wrapper.click(function(){
+	alert("TIM PETERS!");
+	});
+
 };
 
-//rigging a click event
-$wrapper.click(function(){
-	alert("TIM PETERS!");
-});
+
 
 
