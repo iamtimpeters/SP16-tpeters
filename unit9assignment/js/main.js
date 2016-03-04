@@ -4,12 +4,12 @@
     $( "div.col-md-12 > ul > li > a" ).click(function(){
 
         //Hide any movie descriptions already showing
-            $(".movies.row").hide( "slow" )
+            $(".movies.row").hide( "slow" );
 
         //Color the clicked <a> yellow
             $(this).css("color", "yellow");
 
-        //Color the clicked <a>'s parent's backgroud black
+        //Color the clicked <a>'s parent <ul>'s backgroud black
             $(this).parent().css("backgroundColor", "black");
 
         //Clear the (background) styling from other <ul>'s
