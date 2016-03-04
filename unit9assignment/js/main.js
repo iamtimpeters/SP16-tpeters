@@ -17,12 +17,9 @@
 
         //Clear the (text color) styling from other <a>'s
             $(this).parent().siblings().children().removeAttr( "style" );
-
-        //Color the clicked <a>'s corresponding <div> yellow
-            $("#" + $(this).attr("data-target")).css( "color", "yellow" );
-
-        //Color the clicked <a>'s corresponding <div>'s background black
-            $("#" + $(this).attr("data-target")).css( "backgroundColor", "black" );
+            
+        //Color the clicked <a>'s corresponding <div>'s color to yellow & bg color to black
+            $("#" + $(this).attr("data-target")).css({"color": "yellow", "backgroundColor": "black"});
 
         //Show the clicked <a>'s corresponding <div>
             $("#" + $(this).attr("data-target")).show( "slow" );
