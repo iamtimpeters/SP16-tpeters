@@ -1,30 +1,33 @@
 // https://learn.jquery.com/using-jquery-core/document-ready/
 
 
-$(document).ready(function(){
-
     $( "div.col-md-12 > ul > li > a" ).click(function(){
 
-            var divMovies = $(".movies.row");
+        //Hide any movie descriptions already showing
+            $(".movies.row").hide( "slow" )
 
-            divMovies.hide( "slow" );
-
-            var dataTarget = $(this).attr("data-target");
-
+        //Color the clicked <a> yellow
             $(this).css("color", "yellow");
+
+        //Color the clicked <a>'s parent's backgroud black
             $(this).parent().css("backgroundColor", "black");
+
+        //Clear the (background) styling from other <ul>'s
             $(this).parent().siblings().removeAttr( "style" ); 
+
+        //Clear the (text color) styling from other <a>'s
             $(this).parent().siblings().children().removeAttr( "style" );
 
-            console.log(dataTarget);
+        //Color the clicked <a>'s corresponding <div> yellow
+            $("#" + $(this).attr("data-target")).css( "color", "yellow" );
 
-            var $Episode = $("#"+dataTarget);
-            $Episode.css( "color", "yellow" );
-            $Episode.css( "backgroundColor", "black" );
-            $Episode.show( "slow" );
+        //Color the clicked <a>'s corresponding <div>'s background black
+            $("#" + $(this).attr("data-target")).css( "backgroundColor", "black" );
 
+        //Show the clicked <a>'s corresponding <div>
+            $("#" + $(this).attr("data-target")).show( "slow" );
+   
      });
 
-});
 
 
