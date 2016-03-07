@@ -1,13 +1,7 @@
 // https://learn.jquery.com/using-jquery-core/document-ready/
 
 
-<<<<<<< Updated upstream
-
-
-    $( "a[data-target*='episode']" ).click(function(){
-=======
     $("#movie-menu").click(function(anchors){
->>>>>>> Stashed changes
 
         //Hide any movie descriptions already showing
             $(".movies.row").hide( "slow" );
