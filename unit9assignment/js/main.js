@@ -1,7 +1,9 @@
 // https://learn.jquery.com/using-jquery-core/document-ready/
 
 
-    $( "div.col-md-12 > ul > li > a" ).click(function(){
+
+
+    $( "a[data-target*='episode']" ).click(function(){
 
         //Hide any movie descriptions already showing
             $(".movies.row").hide( "slow" );
