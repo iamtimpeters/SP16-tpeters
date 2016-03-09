@@ -22,41 +22,53 @@ $(document).ready(function(){
 
 	
 
-	//Increase # of Units with (+) click
+	//Increase # of Units by 1 with (+) click
 	$(".glyphicon.glyphicon-plus").click(function(){
 
-		var td = ($(this).parent().parent().siblings());
+		var allTd = ($(this).parent().parent().siblings());
 
-		console.log(td);
+		var unitsTd = allTd[4].innerText;
 
-		var newTd = td[4].innerText;
+		var costTd = allTd[5].innerText;
 
-		console.log(newTd);
+		var totalTd = allTd[6].innerText;
 
-		var tdInteger = (parseInt(newTd) + 1);
+		var tdNewUnits = (parseInt(unitsTd) + 1);
 
-		console.log(tdInteger);
+		var costTdDecimal = (parseFloat(costTd));
 
-		td[4].innerHTML = tdInteger;
+		var tdNewTotal = tdNewUnits * costTdDecimal;
+
+		var tdNewTotalDecimal = parseFloat(tdNewTotal).toFixed(2);
+
+		allTd[4].innerHTML = tdNewUnits;
+
+		allTd[6].innerHTML = tdNewTotalDecimal;
 
 	});
 
-	//Decrease # of Units with (-) click
+	//Decrease # of Units by 1 with (-) click
 	$(".glyphicon.glyphicon-minus").click(function(){
 
-		var td = ($(this).parent().parent().siblings());
+		var allTd = ($(this).parent().parent().siblings());
 
-		console.log(td);
+		var unitsTd = allTd[4].innerText;
 
-		var newTd = td[4].innerText;
+		var costTd = allTd[5].innerText;
 
-		console.log(newTd);
+		var totalTd = allTd[6].innerText;
 
-		var tdInteger = (parseInt(newTd) - 1);
+		var tdNewUnits = (parseInt(unitsTd) - 1);
 
-		console.log(tdInteger);
+		var costTdDecimal = (parseFloat(costTd));
 
-		td[4].innerHTML = tdInteger;
+		var tdNewTotal = tdNewUnits * costTdDecimal;
+
+		var tdNewTotalDecimal = parseFloat(tdNewTotal).toFixed(2);
+
+		allTd[4].innerHTML = tdNewUnits;
+
+		allTd[6].innerHTML = tdNewTotalDecimal;
 
 	});
 
