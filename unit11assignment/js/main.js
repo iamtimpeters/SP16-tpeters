@@ -1,8 +1,5 @@
 // https://learn.jquery.com/using-jquery-core/document-ready/
 $(document).ready(function(){
-    
-    console.log("hello world!");
-
 
     //Make <tr>'s have bg color of yellow w/ hover	
 	$("#my-table > tbody > tr").hover(
@@ -22,53 +19,37 @@ $(document).ready(function(){
 
 	
 
-	//Increase # of Units by 1 with (+) click
+	//Increase # of Units by 1 with (+) click + recalculate Total
 	$(".glyphicon.glyphicon-plus").click(function(){
 
 		var allTd = ($(this).parent().parent().siblings());
 
-		var unitsTd = allTd[4].innerText;
+		var unitsTd = parseFloat(allTd[4].innerText) + 1;
 
-		var costTd = allTd[5].innerText;
+		var costTd = parseFloat(allTd[5].innerText);
 
-		var totalTd = allTd[6].innerText;
+		var newTotalTd = parseFloat(unitsTd * costTd).toFixed(2);
 
-		var tdNewUnits = (parseInt(unitsTd) + 1);
+		allTd[4].innerHTML = unitsTd;
 
-		var costTdDecimal = (parseFloat(costTd));
-
-		var tdNewTotal = tdNewUnits * costTdDecimal;
-
-		var tdNewTotalDecimal = parseFloat(tdNewTotal).toFixed(2);
-
-		allTd[4].innerHTML = tdNewUnits;
-
-		allTd[6].innerHTML = tdNewTotalDecimal;
+		allTd[6].innerHTML = newTotalTd;
 
 	});
 
-	//Decrease # of Units by 1 with (-) click
+	//Decrease # of Units by 1 with (-) click + recalculate Total
 	$(".glyphicon.glyphicon-minus").click(function(){
 
 		var allTd = ($(this).parent().parent().siblings());
 
-		var unitsTd = allTd[4].innerText;
+		var unitsTd = parseFloat(allTd[4].innerText) - 1;
 
-		var costTd = allTd[5].innerText;
+		var costTd = parseFloat(allTd[5].innerText);
 
-		var totalTd = allTd[6].innerText;
+		var newTotalTd = parseFloat(unitsTd * costTd).toFixed(2);
 
-		var tdNewUnits = (parseInt(unitsTd) - 1);
+		allTd[4].innerHTML = unitsTd;
 
-		var costTdDecimal = (parseFloat(costTd));
-
-		var tdNewTotal = tdNewUnits * costTdDecimal;
-
-		var tdNewTotalDecimal = parseFloat(tdNewTotal).toFixed(2);
-
-		allTd[4].innerHTML = tdNewUnits;
-
-		allTd[6].innerHTML = tdNewTotalDecimal;
+		allTd[6].innerHTML = newTotalTd;
 
 	});
 
