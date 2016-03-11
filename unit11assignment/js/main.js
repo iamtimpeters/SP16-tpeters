@@ -2,7 +2,7 @@
 $(document).ready(function(){
 
     //Make <tr>'s have bg color of yellow w/ hover	
-	$("#my-table > tbody > tr").hover(
+	$("tbody > tr").hover(
 		function() {
 	  	$(this).css("backgroundColor", "yellow");
 	  	}, 
@@ -11,45 +11,48 @@ $(document).ready(function(){
 	  	}
 	);
 
-
-	//Hide row of trash button that's clicked
-	$(".glyphicon.glyphicon-trash").click(function(){
-	    $(this).parent().parent().parent().hide( "slow" );
-	});
-
-	
-
 	//Increase # of Units by 1 with (+) click + recalculate Total
-	$(".glyphicon.glyphicon-plus").click(function(){
-
-		var allTd = ($(this).parent().parent().siblings());
-
-		var unitsTd = parseFloat(allTd[4].innerText) + 1;
-
-		var costTd = parseFloat(allTd[5].innerText);
-
-		var newTotalTd = parseFloat(unitsTd * costTd).toFixed(2);
-
-		allTd[4].innerHTML = unitsTd;
-
-		allTd[6].innerHTML = newTotalTd;
-
-	});
-
 	//Decrease # of Units by 1 with (-) click + recalculate Total
-	$(".glyphicon.glyphicon-minus").click(function(){
+	//Hide row of trash button that's clicked
+	$("tr").click(function(row){
 
-		var allTd = ($(this).parent().parent().siblings());
+		if ($(row.target).hasClass("glyphicon-plus")) {
 
-		var unitsTd = parseFloat(allTd[4].innerText) - 1;
+   			var units = $(this).find("td:nth-child(5)");
+   			var newUnits = parseFloat(units[0].innerHTML) + 1;	
+   			
+   			var cost = $(this).find("td:nth-child(6)");
+   			var costNum = parseFloat(cost[0].innerHTML)
+   			
+   			var total = $(this).find("td:nth-child(7)");
+   			var newTotal = parseFloat(newUnits * costNum).toFixed(2);
 
-		var costTd = parseFloat(allTd[5].innerText);
+   			$(this).find("td:nth-child(5)").text(newUnits);
+   			$(this).find("td:nth-child(7)").text(newTotal);
 
-		var newTotalTd = parseFloat(unitsTd * costTd).toFixed(2);
+		} 
+		
+		else if ($(row.target).hasClass("glyphicon-minus")) {
+    		
+			var units = $(this).find("td:nth-child(5)");
+   			var newUnits = parseFloat(units[0].innerHTML) - 1;	
+   			
+   			var cost = $(this).find("td:nth-child(6)");
+   			var costNum = parseFloat(cost[0].innerHTML)
+   			
+   			var total = $(this).find("td:nth-child(7)");
+   			var newTotal = parseFloat(newUnits * costNum).toFixed(2);
 
-		allTd[4].innerHTML = unitsTd;
+   			$(this).find("td:nth-child(5)").text(newUnits);
+   			$(this).find("td:nth-child(7)").text(newTotal);
 
-		allTd[6].innerHTML = newTotalTd;
+		} 
+
+		else if ($(row.target).hasClass("glyphicon-trash")){
+
+    		$(this).hide( "slow" );
+
+		}
 
 	});
 

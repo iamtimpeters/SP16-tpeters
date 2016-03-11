@@ -31,12 +31,12 @@ $(document).ready(function(){
 		$(this).css("background-color", "purple");
 	});
 	
-	$(document).keydown(function(e){
+	// $(document).keydown(function(e){
 		
-		console.log(e);
-		alert("What are you doing??");
+	// 	console.log(e);
+	// 	alert("What are you doing??");
 		
-	});
+	// });
 	
 });
 
