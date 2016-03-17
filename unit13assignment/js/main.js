@@ -43,7 +43,6 @@ $(document).ready(function(){
 
         $.get(urlStem + $(anchors.target).data("url"), /* callback */ function(episodes){
 
-            //Hide any movie descriptions already showing
             $(".movies.row").hide( "slow" );
 
             $("div.movies.row > div").remove();
@@ -64,47 +63,19 @@ $(document).ready(function(){
 
             $("#episode-" + $(anchors.target).data("id")).show( "slow" );
 
-            //Color the clicked <a> yellow
             $(anchors.target).css("color", "yellow");
 
-            //Color the clicked <a>'s parent <ul>'s backgroud black
             $(anchors.target).parent().css("backgroundColor", "black");
 
-            //Clear the (background) styling from other <ul>'s
             $(anchors.target).parent().siblings().removeAttr( "style" ); 
 
-            //Clear the (text color) styling from other <a>'s
             $(anchors.target).parent().siblings().children().removeAttr( "style" );
 
-            //Color the clicked <a>'s corresponding <div>'s color to yellow & bg color to black
             $("#episode-" + $(anchors.target).data("id")).css({"color": "yellow", "backgroundColor": "black"});
 
         });
 
-    });
-
-    /*    //Hide any movie descriptions already showing
-            $(".movies.row").hide( "slow" );
-
-        //Color the clicked <a> yellow
-            $(anchors.target).css("color", "yellow");
-
-        //Color the clicked <a>'s parent <ul>'s backgroud black
-            $(anchors.target).parent().css("backgroundColor", "black");
-
-        //Clear the (background) styling from other <ul>'s
-            $(anchors.target).parent().siblings().removeAttr( "style" ); 
-
-        //Clear the (text color) styling from other <a>'s
-            $(anchors.target).parent().siblings().children().removeAttr( "style" );
-            
-        //Color the clicked <a>'s corresponding <div>'s color to yellow & bg color to black
-            $("#" + $(anchors.target).data("target")).css({"color": "yellow", "backgroundColor": "black"});
-
-        //Show the clicked <a>'s corresponding <div>
-            $("#" + $(anchors.target).data("target")).show( "slow" );*/
-   
-     
+    });     
 
 });
 
