@@ -13,21 +13,21 @@ $(document).ready(function(){
 
              var $div = $("<div></div>");
 
-             $($div).attr("id", "episode-" + movies.id);
+             $div.attr("id", "episode-" + movies.id);
 
-             $($div).addClass("movies row");
+             $div.addClass("movies row");
 
-             $($a).attr("href", "#");
+             $a.attr("href", "#");
 
-             $($a).attr("data-id", movies.id);
+             $a.attr("data-id", movies.id);
 
-             $($a).attr("data-url", movies.url);
+             $a.attr("data-url", movies.url);
 
              console.log($a);
 
              var $li = $("<li></li>");
 
-             $($li).append($a);
+             $li.append($a);
 
              $("#movie-menu").append($li);  
 
@@ -54,11 +54,11 @@ $(document).ready(function(){
 
             var $subDiv = $("<div></div>");
 
-            $($subDiv).append($h1);
+            $subDiv.append($h1);
 
-            $($subDiv).append($p);
+            $subDiv.append($p);
 
-            $($subDiv).addClass("col-md-12");
+            $subDiv.addClass("col-md-12");
 
             $("#episode-" + $(anchors.target).data("id")).append($subDiv);
 
