@@ -23,8 +23,6 @@ $(document).ready(function(){
 
              $a.attr("data-url", movies.url);
 
-             console.log($a);
-
              var $li = $("<li></li>");
 
              $li.append($a);
