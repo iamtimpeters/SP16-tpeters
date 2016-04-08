@@ -44,7 +44,6 @@ $(document).ready(function(){
     $("button[data-action='remove']").click(function(){
        
        var rowIndex = $(this).parent().parent().index();
-       //localStorage.removeItem(key);
        console.log(rowIndex)
        var jsonRemove = localStorage.getItem("toDoArray");
        var toDoRemove = JSON.parse(jsonReady);
@@ -56,52 +55,36 @@ $(document).ready(function(){
     });
 
     $("button[data-action='complete']").click(function(){
+       //add 'completed' class
        $(this).parent().parent().addClass("completed");
+
+       //show green Success alert and hide after 3 sec. 
        $(".alert.alert-success").show( "slow" );
         function hideSuccess(){
                 $(".alert.alert-success").hide( "slow" );
             }
         setTimeout(hideSuccess, (3 * 1000));
 
+        //mark time since task was completed
         var rightNow = Date.now();
-
         var $clickedButton = $(this);
-
-        //$tdTimeStamp = $("<td></td>");
-        //$tdTimeStamp.attr("data-start", rightNow);
-        //$tdTimeStamp.addClass("timeStamp");
-            $spanTimeStamp = $("<span></span>")
-            $spanTimeStamp.addClass("completed-ticker");
-            //$tdTimeStamp.append($spanTimeStamp);
-        $tdTimeStampText1 = "Completed ";
-        $tdtimeStampText2 = " minutes ago.";
+        $(this).parent().next().attr("data-start", rightNow);
         var firstTime = 0
-        //$tdTimeStamp.text($tdTimeStampText1 + firstTime + $tdtimeStampText2);
-        $(this).parent().next().append($spanTimeStamp);
-        //$(this).parent().next().text($tdTimeStampText1 + firstTime + $tdtimeStampText2);
-        //$(this).parent().parent().append($tdTimeStamp);
-
-        //var startTime = $(this).parent().parent()
-
+        $(this).parent().next().text("Completed " + firstTime + " minutes ago.");
+        
+        //function to update how much time has passed
         function minuteTracker(){
-              console.log($clickedButton);
-              var $td = $clickedButton.parent().next();
-              var $firstTime = $td.data("start")
-              //console.log($test);
-              //console.log($secondTest);
-              var newNow = Date.now();
-              $clickedButton.parent().next().remove();
-             
-              //$tdTimeStamp = $("<td></td>");
-              //$tdTimeStamp.addClass("timeStamp")
-              //$tdTimeStampText1 = "Completed ";
-              //$tdtimeStampText2 = " minutes ago.";
-              var elapsed = ((newNow - $firstTime) / 1000) / 60;
-              roundedElapsed = elapsed.toFixed(0);
-              $tdTimeStamp.text($tdTimeStampText1 + roundedElapsed + $tdtimeStampText2);
-              $clickedButton.parent().parent().append($tdTimeStamp);
-            };  
-        //setInterval(minuteTracker, (6 * 1000));
+          var newNow = Date.now();
+          $(this).parent().next().text("");
+          var elapsed = ((newNow - rightNow) / 1000) / 60;
+          roundedElapsed = elapsed.toFixed(0);
+          if(roundedElapsed < 2){
+            $clickedButton.parent().next().text("Completed " + roundedElapsed + " minute ago.");
+            } else {
+            $clickedButton.parent().next().text("Completed " + roundedElapsed + " minutes ago.");
+            }
+        };  
+        setInterval(minuteTracker, (60 * 1000));
     });
 
     $("#btn-todo-add").click(function(){
@@ -117,6 +100,7 @@ $(document).ready(function(){
        $("table").append($tr);
        $tr.append($td);
        $tdButton = $("<td></td>");
+       $tdTimeStampReady = $("<td></td>");
        $spanOk = $("<span></span>")
        		$spanOk.addClass("glyphicon glyphicon-ok")
        $spanTrash = $("<span></span>")
@@ -127,15 +111,68 @@ $(document).ready(function(){
        		$completeButton.addClass("btn btn-icon");
        		$completeButton.attr("data-action", "complete");
        		$completeButton.append($spanOk);
+
+          //adding button functionality to Complete button
+          $completeButton.click(function(){
+
+            //add 'completed' class
+            $(this).parent().parent().addClass("completed");
+
+            //show green Success alert and hide after 3 sec. 
+            $(".alert.alert-success").show( "slow" );
+              function hideSuccess(){
+                $(".alert.alert-success").hide( "slow" );
+              };
+              setTimeout(hideSuccess, (3 * 1000));
+
+            //mark time since task was completed
+              var rightNow = Date.now();
+              var $clickedButton = $(this);
+              $(this).parent().next().attr("data-start", rightNow);
+              var firstTime = 0
+              $(this).parent().next().text("Completed " + firstTime + " minutes ago.");
+                
+            //function to update how much time has passed
+              function minuteTracker(){
+                var newNow = Date.now();
+                $(this).parent().next().text("");
+                var elapsed = ((newNow - rightNow) / 1000) / 60;
+                roundedElapsed = elapsed.toFixed(0);
+                if(roundedElapsed < 2){
+                  $clickedButton.parent().next().text("Completed " + roundedElapsed + " minute ago.");
+                  } else {
+                  $clickedButton.parent().next().text("Completed " + roundedElapsed + " minutes ago.");
+                  }  
+              };  
+              setInterval(minuteTracker, (60 * 1000));
+          });
+
        $removeButton = $("<button></button>");
        		$removeButton.attr("title", "remove");
        		$removeButton.attr("type", "button");
        		$removeButton.addClass("btn btn-icon");
        		$removeButton.attr("data-action", "remove");
        		$removeButton.append($spanTrash);
+
+        //adding button functionality to Remove button
+          $removeButton.click(function(){
+
+            var rowIndex = $(this).parent().parent().index();
+            //localStorage.removeItem(key);
+            console.log(rowIndex)
+            var jsonRemove = localStorage.getItem("toDoArray");
+            var toDoRemove = JSON.parse(jsonReady);
+            toDoRemove.splice(rowIndex, 1);
+            console.log(toDoRemove);
+            localStorage.setItem("toDoArray", JSON.stringify(toDoRemove));
+            $(this).parent().parent().remove();
+
+          });
+
        $tdButton.append($completeButton);
        $tdButton.append($removeButton);
        $tr.append($tdButton);
+       $tr.append($tdTimeStampReady);
     });
 
     $("#btn-clear-mem").click(function(){
