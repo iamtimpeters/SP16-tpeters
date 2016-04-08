@@ -135,7 +135,6 @@ $(document).ready(function(){
         toDoReady = []
        }
        toDoReady.push(answer);
-       console.log(toDoReady);
        localStorage.setItem("toDoArray", JSON.stringify(toDoReady));
        var $tr = $("<tr></tr>")
        var $td = $("<td></td>").text(answer);
