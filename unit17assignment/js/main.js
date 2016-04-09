@@ -41,7 +41,7 @@ $(document).ready(function(){
   	    };
     };
 
-    $("tr").on("click", function(row){
+    $(".table").on("click", function(row){
 
       var targetAction = $(row.target).data("action");
            
