@@ -1,12 +1,8 @@
 // https://learn.jquery.com/using-jquery-core/document-ready/
 $(document).ready(function(){
-
-	   var toDoList = [];
 	   	
-	   var jsonReady = localStorage.getItem("toDoArray");
-     var toDoReady = JSON.parse(jsonReady);
-
-     console.log(toDoReady);
+	  var jsonReady = localStorage.getItem("toDoArray");
+    var toDoReady = JSON.parse(jsonReady);
 
     if (toDoReady != null){
         for (i = 0; i < toDoReady.length; i++) {
