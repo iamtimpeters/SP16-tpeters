@@ -9,28 +9,29 @@ $(document).ready(function(){
 
     	console.log(carData); 
 
-    	var viewModel = {
-          
-	    	carBrands: ko.observableArray(carData),
+    	function AddingCars(){
 
-	    	addToItems: function(){
-	            this.carBrands.push({
-	            	make_display: $("#brand-text").val(),
+    		var self = this;
+
+    		self.carBrands = ko.observableArray(carData);
+
+    		self.addCar = function() {
+    			self.carBrands.push({
+    				make_display: $("#brand-text").val(),
 	            	make_country: $("#country-text").val()
-	            });
+    			});
+    			self.carBrands.sort(function (left, right) { 
+    				return left.make_display == right.make_display ? 0 : (left.make_display < right.make_display ? -1 : 1) })
+    		};	
 
-	            this.carBrands.sort(function (left, right) {
-	            	return left.make_display == right.make_display ? 0 : (left.make_display < right.make_display ? -1 : 1) 
-	            });
-	             
-	         }
+    		self.removeCar = function(brand) {
+    			self.carBrands.remove(brand);
+    		}
 
+    	}
 
+    ko.applyBindings(new AddingCars());
 
-    	};
-
-    	ko.applyBindings(viewModel);
-
-     });
+    });
 
 });

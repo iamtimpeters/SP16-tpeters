@@ -22,7 +22,7 @@
                 <form class="form-inline" role="form">
                     <input id="brand-text" type="text" class="form-control" placeholder="New Brand" name="brand" />
                     <input id="country-text" type="text" class="form-control" placeholder="USA" name="country" />
-                    <button id="btn-brand-add" type="button" class="btn btn-primary" data-bind="click: addToItems">Add</button>
+                    <button id="btn-brand-add" type="button" class="btn btn-primary" data-bind="click: addCar">Add</button>
                 </form>
             </div>
         </div>
@@ -43,7 +43,7 @@
                             <td data-bind="text: make_display"></td>
                             <td data-bind="text: make_country"></td>
                             <td>
-                                <button title="remove" type="button" class="btn btn-icon" data-action="remove">
+                                <button title="remove" type="button" class="btn btn-icon" data-action="remove" data-bind="click: $parent.removeCar">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </td>
