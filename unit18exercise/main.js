@@ -7,8 +7,6 @@ $(document).ready(function(){
 
     	var carData = result;
 
-    	console.log(carData); 
-
     	function AddingCars(){
 
     		var self = this;
@@ -21,7 +19,7 @@ $(document).ready(function(){
 	            	make_country: $("#country-text").val()
     			});
     			self.carBrands.sort(function (left, right) { 
-    				return left.make_display == right.make_display ? 0 : (left.make_display < right.make_display ? -1 : 1) })
+    				return left.make_display == right.make_display ? 0 : (left.make_display < right.make_display ? -1 : 1) });
     		};	
 
     		self.removeCar = function(brand) {
