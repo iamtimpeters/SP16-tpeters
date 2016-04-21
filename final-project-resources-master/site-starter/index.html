@@ -36,12 +36,16 @@
 	<div class="row">
 		<div class="col-md-12">
 
-			<ul data-bind="foreach: categories">
-				<a href=""><li data-bind="text: name"></li></a>
+			<ul id="categories" data-bind="foreach: categories">
+				<a href="" data-bind="attr: { id: id}, click: $parent.productLink"><li data-bind="text: name"></li></a>
 			</ul>
 
 		</div>
 	</div>
+
+	 <div class="col-sm-12">
+                <button id="btn-three" class="btn" type="button">Examine URL</button>
+     </div>
 
 </div>
 

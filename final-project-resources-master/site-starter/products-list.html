@@ -51,7 +51,7 @@
 						<td data-bind="text: name"></td>
 						<td data-bind="text: regularPrice">$2.98</td>
 						<td>
-							<a href="product-details.html?id={id}">
+							<a data-bind="attr: { id: sku}, click: $parent.productDetailLink"href="">
 								Click to View
 							</a>
 						</td>

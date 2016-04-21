@@ -16,6 +16,15 @@ $(document).ready(function(){
 
     		self.products = ko.observableArray(productsData);
 
+            self.productDetailLink = function(products){
+                var localSource = "file:///Users/Tim/Documents/Parkland%20classes/CSC175/SP16-tpeters/final-project-resources-master/site-starter/product-details.html";    
+                var productSku = products.sku;
+                localSource += "#" + productSku
+                console.log(document.location.hash);
+                console.log(document.location.hash.slice(1));
+                document.location.assign(localSource);
+            };
+
     	};
 
     ko.applyBindings(new AddingProducts());
