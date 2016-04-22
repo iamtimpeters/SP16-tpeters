@@ -49,7 +49,7 @@
 					<tr>
 						<td data-bind="text: manufacturer"></td>
 						<td data-bind="text: name"></td>
-						<td data-bind="text: regularPrice">$2.98</td>
+						<td data-bind="text: regularPrice"></td>
 						<td>
 							<a data-bind="attr: { id: sku}, click: $parent.productDetailLink"href="">
 								Click to View
@@ -59,6 +59,10 @@
 				</tbody>
 			</table>
 			
+			<div class="col-sm-12">
+                <button id="btn-one" class="btn" type="button" data-bind="click: nextPage">Next Page</button>
+     		</div>
+
 		</div>
 	</div>
 	
