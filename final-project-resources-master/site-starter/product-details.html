@@ -5,6 +5,14 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>CSC 175</title>
 
+    <!-- You can use open graph tags to customize link previews.
+    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+    <meta property="og:url" content="http://www.your-domain.com/your-page.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Your Website Title" />
+    <meta property="og:description" content="Your description" />
+    <meta property="og:image" content="http://www.your-domain.com/path/image.jpg" />
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 
@@ -112,7 +120,7 @@
         <div class="row">
             <div id="leave-a-comment" class="col-md-12">
                 
-                <form class="form" action="#">
+                <form id="product_comment_form" class="form" action="#">
                     <h2>Leave a Comment</h2>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -134,11 +142,33 @@
         </div>
     </div>
 
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Your like button code -->
+    <div class="fb-like" 
+        data-href="http://www.your-domain.com/your-page.html" 
+        data-layout="standard" 
+        data-action="like" 
+        data-show-faces="true">
+    </div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
     <!-- JS -->
     <!-- this is the jQuery CDN reference. You need internet access for this file! -->
     <script src="https://code.jquery.com/jquery-2.1.4.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="js/knockout-3.4.0.js" type="text/javascript"></script>
+    <script src="js/jquery.validate.min.js" type="text/javascript"></script>
 
     <!-- custom code for web page -->
     <script src="js/product-details.js" type="text/javascript"></script>

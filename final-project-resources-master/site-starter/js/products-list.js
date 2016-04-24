@@ -2,34 +2,55 @@
 
 $(document).ready(function(){
 
-    var urlFirstPart = "https://api.bestbuy.com/v1/products(categoryPath.id="
+    var urlFirstPart = "https://api.bestbuy.com/v1/products(categoryPath.id=";
     
-    var productCategory = document.location.hash.slice(1)
-    
-    var urlSecondPart = ")?apiKey=zap8x2yv8ryc6jc9bet42dkp&sort=name.asc&page="
+    var productCategoryRaw = document.location.hash.slice(1);
 
-    var productPageNum = 1
+    var productCategory = productCategoryRaw.substring(productCategoryRaw.indexOf('&')).slice(1);
+
+    console.log(productCategory);
+
+    var pageNumber = productCategoryRaw.slice(8,11);
+
+    console.log(pageNumber);
+
+    var pageNumber = parseInt(pageNumber);
+
+    if (pageNumber == 1) {
+      $("#btn-prev").hide();
+    };
+
+    console.log(pageNumber);
+
+    var urlSecondPart = ")?apiKey=zap8x2yv8ryc6jc9bet42dkp&sort=name.asc&page="
 
     var urlThirdPart = "&format=json"
     
-    var url = urlFirstPart + productCategory + urlSecondPart + productPageNum + urlThirdPart;
+    var url = urlFirstPart + productCategory + urlSecondPart + pageNumber + urlThirdPart;
+
+    console.log(url);
 
     $.get(url, /* callback */ function(result){
 
     	var productsData = result.products;
-        var currentPage = result.currentPage;
 
+      var totalPages = result.totalPages;
+
+      var totalPages = parseInt(totalPages);
+
+      if (pageNumber == totalPages) {
+        $("#btn-next").hide();
+      };
+
+      console.log(totalPages);
+        
     	console.log(productsData);
-
-        console.log(currentPage);
 
     	function AddingProducts(){
 
     		var self = this;
 
     		self.products = ko.observableArray(productsData);
-
-            //self.thisPage = ko.observableArray(currentPage);
 
             self.productDetailLink = function(products){
                 var localSource = "file:///Users/Tim/Documents/Parkland%20classes/CSC175/SP16-tpeters/final-project-resources-master/site-starter/product-details.html";    
@@ -41,21 +62,31 @@ $(document).ready(function(){
             };
 
             self.nextPage = function(){
-                
-               var nextPage = productPageNum + 1
+                var localSource = document.location.pathname;
+                pageNumber = pageNumber + 1;
+                if (pageNumber < 10){
+                    localSource += "#" + "pageNum=00" + pageNumber + "&" + productCategory
+                } else if (pageNumber > 9 && pageNumber < 100){
+                    localSource += "#" + "pageNum=0" + pageNumber + "&" + productCategory
+                } else {
+                    localSource += "#" + "pageNum=" + pageNumber + "&" + productCategory
+                };
+                document.location.assign(localSource);
+                document.location.reload();
+            };
 
-               url = urlFirstPart + productCategory + urlSecondPart + nextPage + urlThirdPart;
-
-               $.get(url, /* callback */ function(newResult){
-
-                    self.products.push(newResult.products);
-
-                    //var newProductsData = newResult.products;
-
-                    //self.products = ko.observableArray(newProductsData);
-
-                });
-
+            self.prevPage = function(){
+                var localSource = document.location.pathname;
+                pageNumber = pageNumber - 1;
+                if (pageNumber < 10){
+                    localSource += "#" + "pageNum=00" + pageNumber + "&" + productCategory
+                } else if (pageNumber > 9 && pageNumber < 100){
+                    localSource += "#" + "pageNum=0" + pageNumber + "&" + productCategory
+                } else {
+                    localSource += "#" + "pageNum=" + pageNumber + "&" + productCategory
+                };
+                document.location.assign(localSource);
+                document.location.reload();
             };
 
     	};
@@ -65,3 +96,4 @@ $(document).ready(function(){
     });
 
 });
+

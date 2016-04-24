@@ -30,4 +30,31 @@ $(document).ready(function(){
 
     });
 
+    $("#product_comment_form").validate({
+        rules: {
+            "firstName": {
+                required: true,
+            },
+            "lastName": {
+                required: true,
+            },
+            "email": {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            "firstName": {
+                required: "Please enter your first name."
+            },
+            "lastName": {
+                required: "Please enter your last name."
+            },
+            "email": {
+                required: "Please enter an email address.",
+                email: "Please enter an email address."
+            }
+        }
+    });
+
 });
