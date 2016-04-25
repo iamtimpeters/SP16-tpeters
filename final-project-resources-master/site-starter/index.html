@@ -34,12 +34,9 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">
-
-			<ul id="categories" data-bind="foreach: categories">
-				<a href="" data-bind="click: $parent.productLink"><li data-bind="text: name"></li></a>
-			</ul>
-
+		<div class="col-md-12 list-group" data-bind="foreach: categories">
+			<a href="" class="list-group-item" data-bind="click: $parent.productLink, text: name" style="font-size: 300%; color: black; text-transform: uppercase; font-weight: bold">
+			</a>
 		</div>
 	</div>
 
